@@ -70,7 +70,7 @@ function stopBtn(){
 }
 
 function dontTouch(x, y, z){
-    if (x > 0.1 || y != 0.1 || z != 0.1) {
+    if (Math.sqrt(Math.abs(x**2 + y**2 + z**2))> 0.2) {
         stopBtn();
     }
 }
