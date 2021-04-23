@@ -58,7 +58,8 @@ function startBtn(){
     startSession();
     let btn = document.getElementById('btn');
     btn.innerHTML = "Stop";
-    btn.onclick = stopBtn;    
+    btn.onclick = stopBtn;
+    resetMsg();
 }
 
 function stopBtn(){
@@ -70,7 +71,7 @@ function stopBtn(){
 
 function dontTouch(x, y, z){
     if (x != 0 || y != 0 || z != 0) {
-        stopSession();
+        stopBtn();
     }
 }
 
@@ -94,4 +95,8 @@ function startLinearAccelerometer(){
           }
         }
     }
+}
+
+function resetMsg(){
+    document.getElementById('message').innerHTML = "";
 }
