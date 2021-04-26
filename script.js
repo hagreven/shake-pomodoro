@@ -96,10 +96,10 @@ function startBtn(){
 }
 
 function stopBtn(){
+    stopSession();
     let btn = document.getElementById('btn');
     btn.innerHTML = "WEITER";
     btn.onclick = startBtn;
-    stopSession();
 }
 
 function dontTouch(x, y, z){
