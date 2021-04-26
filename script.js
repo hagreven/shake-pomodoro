@@ -14,15 +14,16 @@ function init(){
     setTimer(tActive);
     startLinearAccelerometer();
     document.getElementById('label').innerHTML = "Los geht's!";
+    document.getElementById('message').innerHTML = "Concentration is key!";
 }
 
 function startSession(){
     document.getElementById('label').innerHTML = "Höchste Konzentration!";
     if (laSensor != null) {
         laSensor.addEventListener('dont-touch', e => {
-            document.getElementById('message').innerHTML = "Acc-Sensor added";
             dontTouch(laSensor.x, laSensor.y, laSensor.z);
         });
+        document.getElementById('message').innerHTML = "Acc-Sensor added";
     }
     countdown();
 }
@@ -116,6 +117,7 @@ function startLinearAccelerometer(){
             // 1 reading per second
             laSensor = new LinearAccelerationSensor({frequency: 1});
             laSensor.start();
+            document.getElementById('message').innerHTML = "Acc-Sensor started";
         } catch (error) {
           // Handle construction errors.
           if (error.name === 'SecurityError') {

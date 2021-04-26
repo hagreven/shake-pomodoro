@@ -50,6 +50,11 @@ button {
     padding: 0;
 }
 
+#message {
+    font-family: Helvetica;
+    margin-top: 2em;
+}
+
 #stats {
     display: flex;
     flex-flow: row wrap;
