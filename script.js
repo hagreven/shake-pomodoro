@@ -20,8 +20,8 @@ function init(){
 function startSession(){
     document.getElementById('label').innerHTML = "Höchste Konzentration!";
     if (laSensor != null) {
-        laSensor.addEventListener('dont-touch', e => {
-            dontTouch(e.x, e.y, e.z);
+        laSensor.addEventListener('reading', e => {
+            dontTouch(laSensor.x, laSensor.y, laSensor.z);
         });
         document.getElementById('message').innerHTML = "Acc-Sensor added";
     }
@@ -31,7 +31,7 @@ function startSession(){
 function stopSession(){
     clearInterval(timerID);
     if (laSensor != null) {
-        laSensor.removeEventListener('dont-touch');
+        laSensor.removeEventListener('reading');
     }
 }
 
