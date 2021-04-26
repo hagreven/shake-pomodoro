@@ -29,9 +29,7 @@ function startSession(){
 function stopSession(){
     clearInterval(timerID);
     if (laSensor != null) {
-        laSensor.removeEventListener('reading', e => {
-            dontTouch(laSensor.x, laSensor.y, laSensor.z);
-        });
+        laSensor.removeEventListener('reading', dontTouch);
     }
 }
 
