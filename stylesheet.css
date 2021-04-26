@@ -35,7 +35,7 @@ button {
 #timer {
     font-family: digital-7;
     font-size: 7em;
-    line-height: normal;
+    font-kerning: normal;
     background-image:linear-gradient(70deg,#4B79A1,#283E51); /* Dark Sky Gradient */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
