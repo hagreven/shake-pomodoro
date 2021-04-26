@@ -5,6 +5,7 @@ var counter = 0; // counts nr of sessions
 var timer;
 var timerID;
 var focused;
+var laSensor;
 
 window.onload = init();
 
@@ -18,14 +19,18 @@ function init(){
 function startSession(){
     document.getElementById('label').innerHTML = "Höchste Konzentration!";
     countdown();
-    laSensor.addEventListener('dont-touch', e => {
-        dontTouch(laSensor.x, laSensor.y, laSensor.z);
-    });
+    if (laSensor != null) {
+        laSensor.addEventListener('dont-touch', e => {
+            dontTouch(laSensor.x, laSensor.y, laSensor.z);
+        });
+    }
 }
 
 function stopSession(){
     clearInterval(timerID);
-    laSession.removeEventListener('dont-touch');
+    if (laSensor != null) {
+        laSensor.removeEventListener('dont-touch');
+    }
 }
 
 function takeBreak(){
