@@ -29,7 +29,9 @@ function startSession(){
 function stopSession(){
     clearInterval(timerID);
     if (laSensor != null) {
-        laSensor.removeEventListener('reading');
+        laSensor.removeEventListener('reading', e => {
+            dontTouch(laSensor.x, laSensor.y, laSensor.z);
+        });
     }
 }
 
@@ -96,10 +98,10 @@ function startBtn(){
 }
 
 function stopBtn(){
-    stopSession();
     let btn = document.getElementById('btn');
     btn.innerHTML = "WEITER";
     btn.onclick = startBtn;
+    stopSession();
 }
 
 function dontTouch(x, y, z){
