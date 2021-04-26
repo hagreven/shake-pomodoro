@@ -18,12 +18,12 @@ function init(){
 
 function startSession(){
     document.getElementById('label').innerHTML = "Höchste Konzentration!";
-    countdown();
     if (laSensor != null) {
         laSensor.addEventListener('dont-touch', e => {
             dontTouch(laSensor.x, laSensor.y, laSensor.z);
         });
     }
+    countdown();
 }
 
 function stopSession(){
