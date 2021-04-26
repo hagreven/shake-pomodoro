@@ -20,6 +20,7 @@ function startSession(){
     document.getElementById('label').innerHTML = "Höchste Konzentration!";
     if (laSensor != null) {
         laSensor.addEventListener('dont-touch', e => {
+            document.getElementById('message').innerHTML = "Acc-Sensor added";
             dontTouch(laSensor.x, laSensor.y, laSensor.z);
         });
     }
@@ -104,8 +105,8 @@ function stopBtn(){
 
 function dontTouch(x, y, z){
     if (Math.sqrt(Math.abs(x**2 + y**2 + z**2))> 0.1) {
-        stopBtn();
         document.getElementById('message').innerHTML = "Hey, lass dich nicht ablenken!";
+        stopBtn();
     }
 }
 
