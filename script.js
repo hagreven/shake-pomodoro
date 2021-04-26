@@ -33,6 +33,9 @@ function stopSession(){
 }
 
 function takeBreak(){
+    if (laSensor != null){
+        laSensor.stop();
+    }  
     document.getElementById('btn').style.visibility = "hidden";
     let time;
     if(counter < 4){
@@ -116,7 +119,6 @@ function startLinearAccelerometer(){
             laSensor.addEventListener('reading', e => {
                 dontTouch(laSensor.x, laSensor.y, laSensor.z);
             });
-            //laSensor.start();
         } catch (error) {
           // Handle construction errors.
           if (error.name === 'SecurityError') {
