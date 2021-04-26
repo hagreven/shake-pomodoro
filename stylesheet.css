@@ -35,6 +35,7 @@ button {
 #timer {
     font-family: digital-7;
     font-size: 7em;
+    line-height: normal;
     background-image:linear-gradient(70deg,#4B79A1,#283E51); /* Dark Sky Gradient */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -45,6 +46,16 @@ button {
 #label {
     font-family: Helvetica;
     font-weight: bold;
+}
+
+#stats {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    font-family: Helvetica;
+    font-size: 0.8em;
 }
 
 @font-face{
