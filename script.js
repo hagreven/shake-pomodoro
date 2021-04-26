@@ -1,77 +1,106 @@
-var tActive = 25; //min
-var tShortBreak = 5; //ms
-var tLongBreak = 15; //ms
-var counter = 0; // counts nr of 25 min sessions
+var tActive = 60; // in s
+var tShortBreak = 15; // in s
+var tLongBreak = 5; //in s
+var counter = 0; // counts nr of sessions
 var timer;
 var timerID;
+var focused;
 
 window.onload = init();
 
 function init(){
-    timer = tActive*60;
-    document.getElementById('timer').innerHTML = tActive + ":00";
+    focused = true;
+    setTimer(tActive);
+    startLinearAccelerometer();
+    document.getElementById('label').innerHTML = "Los geht's!";
 }
 
 function startSession(){
-    counter++;
-    display = document.getElementById('timer');
-    countdown(timer, display);
-    startLinearAccelerometer();
+    document.getElementById('label').innerHTML = "Höchste Konzentration!";
+    countdown();
+    laSensor.addEventListener('dont-touch', e => {
+        dontTouch(laSensor.x, laSensor.y, laSensor.z);
+    });
 }
 
 function stopSession(){
     clearInterval(timerID);
-    counter--;
-    document.getElementById('message').innerHTML = "Du sollst arbeiten. Das zählt nicht!";
+    laSession.removeEventListener('dont-touch');
 }
 
 function takeBreak(){
-    
+    document.getElementById('btn').style.visibility = "hidden";
+    let time;
+    if(counter < 4){
+        //short break
+        time = tShortBreak;
+    } else {
+        // longer break
+        time = tLongBreak;
+        // new round
+        counter = 0;
+    }
+    setTimer(time);
+    countdown();
 }
 
-function activeBreak() {
-    document.getElementById('timer');
+function setTimer(time){
+    timer = time;
+    let minutes, seconds;
+    minutes = parseInt(timer / 60, 10);
+    seconds = parseInt(timer % 60, 10);
+    
+    // Fill in leading 0 if necessary
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+    
+    // Ausgabe
+    document.getElementById('timer').innerHTML = minutes + ":" + seconds;
 }
 
 // expects duration in seconds!
-function countdown(duration, display) {
-    timer = duration;
-    let minutes, seconds;
+function countdown() {
     timerID = setInterval(function () {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
-
-        // Fill in leading 0 if necessary
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        display.innerHTML = minutes + ":" + seconds;
-
+        setTimer(timer);
         if (--timer < 0) {
-            timer = duration;
-            // TO-DO: Trigger Break!!!
+            clearInterval(timerID);
+            if (focused) {
+                counter++;
+                focused = false;
+                takeBreak();
+                document.getElementById('label').innerHTML = "Wohlverdiente Pause";
+            } else {
+                setTimer(tActive);
+                focused = true;
+                let btn = document.getElementById('btn');
+                btn.innerHTML = "START";
+                btn.onclick = startBtn;
+                btn.style.visibility = "visible";
+                document.getElementById('label').innerHTML = "Und weiter geht's! Starte die nächste Session";
+            }
         }
     }, 1000); // invoked every second
 }
 
 function startBtn(){
-    startSession();
     let btn = document.getElementById('btn');
-    btn.innerHTML = "Stop";
+    btn.innerHTML = "STOP";
     btn.onclick = stopBtn;
     resetMsg();
+    startSession();
 }
 
 function stopBtn(){
-    stopSession();
     let btn = document.getElementById('btn');
-    btn.innerHTML = "Restart";
+    btn.innerHTML = "WEITER";
     btn.onclick = startBtn;
+    stopSession();
 }
 
 function dontTouch(x, y, z){
     if (Math.sqrt(Math.abs(x**2 + y**2 + z**2))> 0.1) {
         stopBtn();
+        document.getElementById('message').innerHTML = "Hey, lass dich nicht ablenken!";
     }
 }
 
@@ -80,9 +109,6 @@ function startLinearAccelerometer(){
         try {
             // 1 reading per second
             laSensor = new LinearAccelerationSensor({frequency: 1});
-            laSensor.addEventListener('reading', e => {
-                dontTouch(laSensor.x, laSensor.y, laSensor.z);
-            });
             laSensor.start();
         } catch (error) {
           // Handle construction errors.
