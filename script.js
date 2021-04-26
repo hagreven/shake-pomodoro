@@ -21,7 +21,7 @@ function startSession(){
     document.getElementById('label').innerHTML = "Höchste Konzentration!";
     if (laSensor != null) {
         laSensor.addEventListener('dont-touch', e => {
-            dontTouch(laSensor.x, laSensor.y, laSensor.z);
+            dontTouch(e.x, e.y, e.z);
         });
         document.getElementById('message').innerHTML = "Acc-Sensor added";
     }
