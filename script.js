@@ -116,7 +116,7 @@ function startLinearAccelerometer(){
         try {
             // 1 reading per second
             laSensor = new LinearAccelerationSensor({frequency: 1});
-            laSensor.start();
+            //laSensor.start();
         } catch (error) {
           // Handle construction errors.
           if (error.name === 'SecurityError') {
