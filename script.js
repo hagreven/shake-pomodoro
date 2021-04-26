@@ -19,9 +19,6 @@ function init(){
 function startSession(){
     document.getElementById('label').innerHTML = "Höchste Konzentration!";
     if (laSensor != null) {
-        /*laSensor.addEventListener('reading', e => {
-            dontTouch(laSensor.x, laSensor.y, laSensor.z);
-        });*/
         laSensor.start();
     }
     countdown();
@@ -116,6 +113,9 @@ function startLinearAccelerometer(){
         try {
             // 1 reading per second
             laSensor = new LinearAccelerationSensor({frequency: 1});
+            laSensor.addEventListener('reading', e => {
+                dontTouch(laSensor.x, laSensor.y, laSensor.z);
+            });
             //laSensor.start();
         } catch (error) {
           // Handle construction errors.
