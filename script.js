@@ -102,7 +102,7 @@ function stopBtn(){
 }
 
 function dontTouch(x, y, z){
-    if (Math.abs(x**2 + y**2 + z**2)> 0.2) {
+    if (Math.abs(x**2 + y**2 + z**2)> 0.15) {
         document.getElementById('message').innerHTML = "Hey, lass dich nicht ablenken!";
         stopBtn();
     }
@@ -112,7 +112,7 @@ function startLinearAccelerometer(){
     if ('LinearAccelerationSensor' in window) {
         try {
             // 1 reading per second
-            laSensor = new LinearAccelerationSensor({frequency: 1});
+            laSensor = new LinearAccelerationSensor({frequency: 10});
             laSensor.addEventListener('reading', e => {
                 dontTouch(laSensor.x, laSensor.y, laSensor.z);
             });
