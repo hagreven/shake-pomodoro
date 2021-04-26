@@ -19,9 +19,10 @@ function init(){
 function startSession(){
     document.getElementById('label').innerHTML = "Höchste Konzentration!";
     if (laSensor != null) {
-        laSensor.addEventListener('reading', e => {
+        /*laSensor.addEventListener('reading', e => {
             dontTouch(laSensor.x, laSensor.y, laSensor.z);
-        });
+        });*/
+        laSensor.start();
     }
     countdown();
 }
@@ -29,7 +30,8 @@ function startSession(){
 function stopSession(){
     clearInterval(timerID);
     if (laSensor != null) {
-        laSensor.removeEventListener('reading', dontTouch);
+        //laSensor.removeEventListener('reading', dontTouch);
+        laSensor.stop();
     }
 }
 
@@ -103,7 +105,7 @@ function stopBtn(){
 }
 
 function dontTouch(x, y, z){
-    if (Math.sqrt(Math.abs(x**2 + y**2 + z**2))> 0.1) {
+    if (Math.abs(x**2 + y**2 + z**2)> 0.2) {
         document.getElementById('message').innerHTML = "Hey, lass dich nicht ablenken!";
         stopBtn();
     }
