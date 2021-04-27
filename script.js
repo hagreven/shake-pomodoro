@@ -1,11 +1,13 @@
-var tActive = 60; // in s
-var tShortBreak = 15; // in s
-var tLongBreak = 5; //in s
+var tActive = 10; // in s
+var tShortBreak = 5; // in s
+var tLongBreak = 7; //in s
 var counter = 0; // counts nr of sessions
 var timer;
 var timerID;
 var focused;
 var laSensor;
+var streak = 0;
+var tips = ['Trink was 💧', 'Snack ein Obst 🍏', 'Beweg dich 💃', 'Öffne das Fenster 🦨', 'Geh kurz mal raus ☀️', 'Atme kurz durch 🌪️'];  
 
 window.onload = init();
 
@@ -27,7 +29,6 @@ function startSession(){
 function stopSession(){
     clearInterval(timerID);
     if (laSensor != null) {
-        //laSensor.removeEventListener('reading', dontTouch);
         laSensor.stop();
     }
 }
@@ -74,16 +75,19 @@ function countdown() {
             if (focused) {
                 counter++;
                 focused = false;
+                updateStreak();
+                showTip();
                 takeBreak();
                 document.getElementById('label').innerHTML = "Wohlverdiente Pause";
             } else {
+                resetMsg();
                 setTimer(tActive);
                 focused = true;
                 let btn = document.getElementById('btn');
                 btn.innerHTML = "START";
                 btn.onclick = startBtn;
                 btn.style.visibility = "visible";
-                document.getElementById('label').innerHTML = "Und weiter geht's! Starte die nächste Session";
+                document.getElementById('label').innerHTML = "Und weiter geht's!";
             }
         }
     }, 1000); // invoked every second
@@ -134,4 +138,19 @@ function startLinearAccelerometer(){
 
 function resetMsg(){
     document.getElementById('message').innerHTML = "";
+}
+
+function updateStreak(){
+    streak++;
+    document.getElementById('streak').innerHTML = streak;
+}
+
+function showTip(){
+    let i = getRandomInt(tips.length - 1);
+    let tip = tips[i];
+    document.getElementById('message').innerHTML = "<b>Tipp: </b>" + tip;
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
 }

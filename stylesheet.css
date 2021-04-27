@@ -69,7 +69,8 @@ button {
     align-items: center;
     width: 100%;
     font-family: Helvetica;
-    font-size: 0.8em;
+    font-size: 1em;
+    color: gray;
 }
 
 @font-face{
