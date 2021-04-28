@@ -1,5 +1,5 @@
 var tActive = 10; // in s
-var tShortBreak = 5; // in s
+var tShortBreak = 60; // in s
 var tLongBreak = 7; //in s
 var counter = 0; // counts nr of sessions
 var timer;
