@@ -172,11 +172,11 @@ function move(val, label, max){
         var bar = document.getElementById(label);
         var height = max;
         var limit = score(val);
+        max = limit;
         var id = setInterval(frame, 10);
         function frame() {
             if (height >= limit) {
                 clearInterval(id);
-                max = limit;
             } else {
                 height++;
                 bar.style.height = height + "%";
