@@ -167,6 +167,7 @@ function getRandomInt(max) {
 
 // val - {x, y, z}, id - {xBar, yBar, zBar}, max
 function move(val, label, max){
+    let bar = document.getElementById(label);
     max += Math.abs(val);
     if (max < 100){
         bar.style.height = max + "%";
