@@ -167,7 +167,13 @@ function getRandomInt(max) {
 
 // val - {x, y, z}, id - {xBar, yBar, zBar}, max
 function move(val, label, max){
-    if (val > max) {
+    max += Math.abs(val);
+    if (max < 100){
+        bar.style.height = max + "%";
+    } else {
+        bar.style.height = "100%";
+    }
+    /*if (val > max) {
         // new max for movement on this axis
         var bar = document.getElementById(label);
         var height = max;
@@ -182,7 +188,7 @@ function move(val, label, max){
                 bar.style.height = height + "%";
             }
         }
-    }
+    }*/
 }
 
 function showScore(){
