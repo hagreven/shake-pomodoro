@@ -96,7 +96,7 @@ button {
     height: 5%;
     background-color: #DD571C;
     text-align: center; /* To center it horizontally (if you want) */
-    line-height: 30px; /* To center it vertically */
+    /*line-height: 30px; /* To center it vertically */
     color: white; 
 }
 

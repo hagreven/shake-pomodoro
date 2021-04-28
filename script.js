@@ -8,7 +8,7 @@ var focused;
 var laSensor;
 var streak = 0;
 var tips = ['Trink was 💧', 'Snack ein Obst 🍏', 'Beweg dich 💃', 'Öffne das Fenster 🦨', 'Geh kurz mal raus ☀️', 'Atme kurz durch 🌪️']; 
-var xMax = 0, yMax = 0, zMax = 0; 
+var xMax, yMax, zMax; 
 
 window.onload = init();
 
@@ -200,10 +200,17 @@ function score(val){
 }
 
 function activeBreak(){
+    resetScore();
     document.getElementById('score').style.display = "flex";
     document.getElementById('score').style.visibility = "visible";
     document.getElementById('start-msg').style.display = "block";
     document.getElementById('start-msg').style.visibility = "visible";
     laSensor.removeEventListener('reading', dontTouch);
     laSensor.addEventListener('reading', showScore);
+}
+
+function resetScore(){
+    xMax = 0;
+    yMax = 0;
+    zMax = 0;
 }
