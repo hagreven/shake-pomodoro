@@ -88,6 +88,7 @@ function countdown() {
                     document.getElementById('score').style.visibility = "hidden";  
                     document.getElementById('start-msg').style.display = "none";
                     document.getElementById('start-msg').style.visibility = "hidden";
+                    document.getElementById('end-msg').style.visibility = "hidden";
                     laSensor.removeEventListener('reading', showScore);
                     laSensor.addEventListener('reading', dontTouch);
                     laSensor.stop();
@@ -213,4 +214,7 @@ function resetScore(){
     xMax = 0;
     yMax = 0;
     zMax = 0;
+    move("xBar", 2);
+    move("yBar", 2);
+    move("zBar", 2);
 }
