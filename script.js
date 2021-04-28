@@ -189,7 +189,7 @@ function showScore(){
 
 function score(val){
     /*TODO: better scoring formula*/
-    let s = Math.abs(val);
+    let s = 0.1*Math.abs(val);
     return s;
 }
 
