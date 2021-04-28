@@ -7,7 +7,8 @@ var timerID;
 var focused;
 var laSensor;
 var streak = 0;
-var tips = ['Trink was 💧', 'Snack ein Obst 🍏', 'Beweg dich 💃', 'Öffne das Fenster 🦨', 'Geh kurz mal raus ☀️', 'Atme kurz durch 🌪️'];  
+var tips = ['Trink was 💧', 'Snack ein Obst 🍏', 'Beweg dich 💃', 'Öffne das Fenster 🦨', 'Geh kurz mal raus ☀️', 'Atme kurz durch 🌪️']; 
+var xMax = 0, yMax = 0, zMax = 0; 
 
 window.onload = init();
 
@@ -35,7 +36,8 @@ function stopSession(){
 
 function takeBreak(){
     if (laSensor != null){
-        laSensor.stop();
+        //laSensor.stop();
+        activeBreak();
     }  
     document.getElementById('btn').style.visibility = "hidden";
     let time;
@@ -50,6 +52,7 @@ function takeBreak(){
     }
     setTimer(time);
     countdown();
+    showTip();
 }
 
 function setTimer(time){
@@ -76,10 +79,14 @@ function countdown() {
                 counter++;
                 focused = false;
                 updateStreak();
-                showTip();
                 takeBreak();
                 document.getElementById('label').innerHTML = "Wohlverdiente Pause";
             } else {
+                if(laSensor != null){
+                    document.getElementById('score').style.display = "none";
+                    laSensor.removeEventListener('reading', showScore);
+                    laSensor.addEventListener('reading', dontTouch);
+                }
                 resetMsg();
                 setTimer(tActive);
                 focused = true;
@@ -108,7 +115,10 @@ function stopBtn(){
     stopSession();
 }
 
-function dontTouch(x, y, z){
+function dontTouch(){
+    let x = laSensor.x;
+    let y = laSensor.y;
+    let z = laSensor.z;
     if (Math.abs(x**2 + y**2 + z**2)> 0.15) {
         document.getElementById('message').innerHTML = "Hey, lass dich nicht ablenken!";
         stopBtn();
@@ -120,9 +130,7 @@ function startLinearAccelerometer(){
         try {
             // 1 reading per second
             laSensor = new LinearAccelerationSensor({frequency: 10});
-            laSensor.addEventListener('reading', e => {
-                dontTouch(laSensor.x, laSensor.y, laSensor.z);
-            });
+            laSensor.addEventListener('reading', dontTouch);
         } catch (error) {
           // Handle construction errors.
           if (error.name === 'SecurityError') {
@@ -153,4 +161,42 @@ function showTip(){
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
+}
+
+// val - {x, y, z}, id - {xBar, yBar, zBar}, max
+function move(val, label, max){
+    if (val > max) {
+        // new max for movement on this axis
+        var bar = document.getElementById(label);
+        var height = max;
+        var limit = score(val);
+        var id = setInterval(frame, 10);
+        function frame() {
+            if (height >= limit) {
+                clearInterval(id);
+            } else {
+                height++;
+                bar.style.height = height + "%";
+            }
+        }
+    }
+}
+
+function showScore(){
+    move(laSensor.x, "xBar", xMax);
+    move(laSensor.y, "yBar", yMax);
+    move(laSensor.z, "zBar", zMax);
+    
+}
+
+function score(val){
+    /*TODO: better scoring formula*/
+    let s = val;
+    return s;
+}
+
+function activeBreak(){
+    document.getElementById('score').style.display = "flex";
+    laSensor.removeEventListener('reading', dontTouch);
+    laSensor.addEventListener('reading', showScore);
 }
