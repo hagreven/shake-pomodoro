@@ -181,32 +181,29 @@ function move(label, val){
 
 function showScore(){
     // calculate scores  
-    xMax += score(laSensor.x) ;
-    yMax += score(laSensor.y);
-    zMax += score(laSensor.z);
-    if (xMax > 100) {
-        xMax = 100;
-    }
-    if (yMax > 100) {
-        yMax = 100;
-    }
-    if (zMax > 100) {
-        zMax = 100;
-    }
+    score();
     // display scores as bars
     move("xBar", xMax);
     move("yBar", yMax);
     move("zBar", zMax);
-    
+    // additional encouragement
+    displayEndMsg();
+}
+
+function score(){
+    let k = 0.03; // Difficulty factor, the smaller the more/longer one has to shake
+    let xs = k*Math.abs(laSensor.x) + xMax;
+    let ys = k*Math.abs(laSensor.y) + yMax;
+    let zs = k*Math.abs(laSensor.z) + zMax;
+    (xs > 100) ? (xMax = 100) : xMax = xs;
+    (ys > 100) ? (ymax = 100) : yMax = ys;
+    (zs > 100) ? (zMax = 100) : zMax = zs;
+}
+
+function displayEndMsg(){
     if(xMax + yMax + zMax >= 300) {
         document.getElementById('end-msg').innerHTML = "Meisterhaft!" + " 💪";
     }
-}
-
-function score(val){
-    /*TODO: better scoring formula*/
-    let s = 0.03*Math.abs(val);
-    return s;
 }
 
 function activeBreak(){
