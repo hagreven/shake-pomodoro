@@ -201,7 +201,9 @@ function calcScore(){
 }
 
 function displayEndMsg(){
-    if((xMax + yMax + zMax) == 300) {
+    let s = xMax + yMax + zMax;
+    document.getElementById('end-msg').innerHTML = s;
+    if(s == 300) {
         document.getElementById('end-msg').innerHTML = "Meisterhaft!" + " 💪";
     }
 }
