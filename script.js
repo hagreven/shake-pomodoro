@@ -176,6 +176,7 @@ function move(val, label, max){
         function frame() {
             if (height >= limit) {
                 clearInterval(id);
+                max = limit;
             } else {
                 height++;
                 bar.style.height = height + "%";
@@ -193,7 +194,7 @@ function showScore(){
 
 function score(val){
     /*TODO: better scoring formula*/
-    let s = val;
+    let s = Math.abs(val);
     return s;
 }
 
