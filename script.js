@@ -88,6 +88,7 @@ function countdown() {
                     document.getElementById('score').style.visibility = "hidden";  
                     laSensor.removeEventListener('reading', showScore);
                     laSensor.addEventListener('reading', dontTouch);
+                    laSensor.stop();
                 }
                 resetMsg();
                 setTimer(tActive);
@@ -168,7 +169,7 @@ function getRandomInt(max) {
 // val - {xMax, yMax, zMax}, label - {xBar, yBar, zBar}
 function move(label, val){
     let bar = document.getElementById(label);
-    if (max < 100){
+    if (val < 100){
         bar.style.height = val + "%";
     } else {
         bar.style.height = "100%";
