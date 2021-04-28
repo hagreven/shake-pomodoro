@@ -8,8 +8,7 @@ var focused;
 var laSensor;
 var streak = 0;
 var tips = ['Trink was 💧', 'Snack ein Obst 🍏', 'Beweg dich 💃', 'Öffne das Fenster 🦨', 'Geh kurz mal raus ☀️', 'Atme kurz durch 🌪️']; 
-//var xMax = 0, yMax = 0, zMax = 0; 
-var score = {xMax: 0, yMax: 0, zMax: 0}; 
+var xMax = 0, yMax = 0, zMax = 0; 
 
 window.onload = init();
 
@@ -178,13 +177,13 @@ function move(label, val){
 
 function showScore(){
     // calculate scores
-    score.xMax += score(laSensor.x);
-    score.yMax += score(laSensor.y);
-    score.zMax += score(laSensor.z);
+    xMax += score(laSensor.x);
+    yMax += score(laSensor.y);
+    zMax += score(laSensor.z);
     // display scores al bars
-    move("xBar", score.xMax);
-    move("yBar", score.yMax);
-    move("zBar", score.zMax);
+    move("xBar", xMax);
+    move("yBar", yMax);
+    move("zBar", zMax);
 }
 
 function score(val){
