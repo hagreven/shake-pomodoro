@@ -203,8 +203,7 @@ function calcScore(){
 
 function displayEndMsg(){
     let s = xMax + yMax + zMax;
-    document.getElementById('message').innerHTML = "Summe: " + s;
-    if(s == 300) {
+    if(s > 299) {
         document.getElementById('end-msg').innerHTML = "Meisterhaft!" + " 💪";
         document.getElementById('end-msg').style.display = "block";
         document.getElementById('end-msg').style.visibility = "visible";

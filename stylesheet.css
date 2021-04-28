@@ -87,7 +87,7 @@ button {
     align-items: flex-end;
     background-color: grey;
     width: 30px;
-    height: 100%;
+    height: 200%;
     margin: 1em;
 }
 
@@ -106,6 +106,7 @@ button {
 }
 
 #end-msg {
+    margin-top: 1em;
     visibility: hidden;
     display: none;
 }
