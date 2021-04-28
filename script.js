@@ -86,6 +86,8 @@ function countdown() {
                 if(laSensor != null){
                     document.getElementById('score').style.display = "none";
                     document.getElementById('score').style.visibility = "hidden";  
+                    document.getElementById('start-msg').style.display = "none";
+                    document.getElementById('start-msg').style.visibility = "hidden";
                     laSensor.removeEventListener('reading', showScore);
                     laSensor.addEventListener('reading', dontTouch);
                     laSensor.stop();
@@ -200,6 +202,8 @@ function score(val){
 function activeBreak(){
     document.getElementById('score').style.display = "flex";
     document.getElementById('score').style.visibility = "visible";
+    document.getElementById('start-msg').style.display = "block";
+    document.getElementById('start-msg').style.visibility = "visible";
     laSensor.removeEventListener('reading', dontTouch);
     laSensor.addEventListener('reading', showScore);
 }
