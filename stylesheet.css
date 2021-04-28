@@ -79,7 +79,7 @@ button {
     flex-flow: row nowrap;
     justify-content: center;
     margin-bottom: 2.5em;
-    height: 4em;
+    height: 5em;
 }
 
 .progress {
