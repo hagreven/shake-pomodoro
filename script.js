@@ -180,14 +180,20 @@ function move(label, val){
 }
 
 function showScore(){
-    // calculate scores
-    let sx = score(laSensor.x);
-    let sy = score(laSensor.y);
-    let sz = score(laSensor.z);
-    xMax += (sx < 100) ? sx : 100;
-    yMax += (sy < 100) ? sy : 100;
-    zMax += (sz < 100) ? sz : 100;
-    // display scores al bars
+    // calculate scores  
+    xMax += score(laSensor.x) ;
+    yMax += score(laSensor.y);
+    zMax += score(laSensor.z);
+    if (xMax > 100) {
+        xMax = 100;
+    }
+    if (yMax > 100) {
+        yMax = 100;
+    }
+    if (zMax > 100) {
+        zMax = 100;
+    }
+    // display scores as bars
     move("xBar", xMax);
     move("yBar", yMax);
     move("zBar", zMax);
