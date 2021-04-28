@@ -185,11 +185,15 @@ function showScore(){
     move("xBar", xMax);
     move("yBar", yMax);
     move("zBar", zMax);
+    
+    if(xMax + yMax + zMax >= 300) {
+        document.getElementById('end-msg').innerHTML = "Meisterhaft!" + " 💪";
+    }
 }
 
 function score(val){
     /*TODO: better scoring formula*/
-    let s = 0.1*Math.abs(val);
+    let s = 0.01*Math.abs(val);
     return s;
 }
 
