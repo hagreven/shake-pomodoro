@@ -74,6 +74,7 @@ button {
 }
 
 #score {
+    visibility: hidden; /*Changed to visible for active break on smartphone*/
     display: none; /*Changed to flex for active break on smartphone*/
     flex-flow: row nowrap;
     justify-content: center;

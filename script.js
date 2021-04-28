@@ -38,7 +38,9 @@ function takeBreak(){
     if (laSensor != null){
         //laSensor.stop();
         activeBreak();
-    }  
+    } else {
+        showTip();
+    }        
     document.getElementById('btn').style.visibility = "hidden";
     let time;
     if(counter < 4){
@@ -52,7 +54,6 @@ function takeBreak(){
     }
     setTimer(time);
     countdown();
-    showTip();
 }
 
 function setTimer(time){
@@ -84,6 +85,7 @@ function countdown() {
             } else {
                 if(laSensor != null){
                     document.getElementById('score').style.display = "none";
+                    document.getElementById('score').style.visibility = "hidden";  
                     laSensor.removeEventListener('reading', showScore);
                     laSensor.addEventListener('reading', dontTouch);
                 }
@@ -197,6 +199,7 @@ function score(val){
 
 function activeBreak(){
     document.getElementById('score').style.display = "flex";
+    document.getElementById('score').style.visibility = "visible";
     laSensor.removeEventListener('reading', dontTouch);
     laSensor.addEventListener('reading', showScore);
 }
