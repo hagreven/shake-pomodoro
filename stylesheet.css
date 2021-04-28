@@ -73,6 +73,32 @@ button {
     color: gray;
 }
 
+#score {
+    display: none; /*Changed to flex for active break on smartphone*/
+    flex-flow: row nowrap;
+    justify-content: center;
+    margin-bottom: 2.5em;
+}
+
+.progress {
+    display: flex;
+    flex-flow: column-reverse nowrap;
+    align-items: flex-end;
+    background-color: grey;
+    width: 30px;
+    height: 100%;
+    margin: 1em;
+}
+
+.bar{
+    width: 30px;
+    height: 5%;
+    background-color: #DD571C;
+    text-align: center; /* To center it horizontally (if you want) */
+    line-height: 30px; /* To center it vertically */
+    color: white; 
+}
+
 @font-face{
     font-family: 'digital-7'; 
     src: url('./fonts/digital-7.ttf');
