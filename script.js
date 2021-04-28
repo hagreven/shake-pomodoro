@@ -196,8 +196,8 @@ function showScore(){
 
 function score(val){
     /*TODO: better scoring formula*/
-    let s = 0.01*Math.abs(val);
-    return s;
+    let s = 0.03*Math.abs(val);
+    return (s < 100) ? s : 100;
 }
 
 function activeBreak(){
