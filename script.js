@@ -168,28 +168,12 @@ function getRandomInt(max) {
 // val - {x, y, z}, id - {xBar, yBar, zBar}, max
 function move(val, label, max){
     let bar = document.getElementById(label);
-    max += Math.abs(val);
+    max += score(val);
     if (max < 100){
         bar.style.height = max + "%";
     } else {
         bar.style.height = "100%";
     }
-    /*if (val > max) {
-        // new max for movement on this axis
-        var bar = document.getElementById(label);
-        var height = max;
-        var limit = score(val);
-        max = limit;
-        var id = setInterval(frame, 10);
-        function frame() {
-            if (height >= limit) {
-                clearInterval(id);
-            } else {
-                height++;
-                bar.style.height = height + "%";
-            }
-        }
-    }*/
 }
 
 function showScore(){
