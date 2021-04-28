@@ -88,6 +88,7 @@ function countdown() {
                     document.getElementById('score').style.visibility = "hidden";  
                     document.getElementById('start-msg').style.display = "none";
                     document.getElementById('start-msg').style.visibility = "hidden";
+                    document.getElementById('end-msg').style.display = "none";
                     document.getElementById('end-msg').style.visibility = "hidden";
                     laSensor.removeEventListener('reading', showScore);
                     laSensor.addEventListener('reading', dontTouch);
@@ -202,9 +203,11 @@ function calcScore(){
 
 function displayEndMsg(){
     let s = xMax + yMax + zMax;
-    document.getElementById('end-msg').innerHTML = s;
+    document.getElementById('message').innerHTML = "Summe: " + s;
     if(s == 300) {
         document.getElementById('end-msg').innerHTML = "Meisterhaft!" + " 💪";
+        document.getElementById('end-msg').style.display = "block";
+        document.getElementById('end-msg').style.visibility = "visible";
     }
 }
 
