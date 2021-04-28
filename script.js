@@ -177,9 +177,9 @@ function move(val, label, max){
 }
 
 function showScore(){
-    move(laSensor.x, "xBar", "xMax"); // passing variable reference instead of value
-    move(laSensor.y, "yBar", "yMax"); // passing variable reference instead of value
-    move(laSensor.z, "zBar", "zMax"); // passing variable reference instead of value
+    move(laSensor.x, "xBar", this.xMax); // passing variable reference instead of value
+    move(laSensor.y, "yBar", this.yMax); // passing variable reference instead of value
+    move(laSensor.z, "zBar", this.zMax); // passing variable reference instead of value
     
 }
 
