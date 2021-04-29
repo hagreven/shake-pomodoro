@@ -160,7 +160,7 @@ function dontTouch(){
     let x = laSensor.x;
     let y = laSensor.y;
     let z = laSensor.z;
-    let tresh = 0.15 // sensibility
+    let tresh = 0.5 // sensibility
     if ( x > tresh || y > tresh || z > thresh) {
         document.getElementById('message').innerHTML = "Hey, lass dich nicht ablenken!";
         // stop counting if user picks up phone
