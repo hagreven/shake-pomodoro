@@ -75,7 +75,7 @@ button {
     visibility: hidden; /*Changed to visible for active break on smartphone*/
     display: none; /*Changed to flex for active break on smartphone*/
     flex-flow: row nowrap;
-    justify-content: center;
+    justify-content: safe center;
     margin-bottom: 2.5em;
     height: 5em;
 }
