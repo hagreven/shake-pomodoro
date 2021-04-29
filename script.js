@@ -1,7 +1,7 @@
 // #################################################### Objects & Variables #################################################################
 
 // --------------------------------------------------- time interval settings ---------------------------------------------------------------
-var tActive = /*25*/60; // time for one session-block in s
+var tActive = /*25*/6; // time for one session-block in s
 var tShortBreak = /*5*/60; // time for short break in s
 var tLongBreak = 15*60; // time for longer break (once every 4 sessions) in s
 var counter = 0; // counts nr of session-blocks completed
