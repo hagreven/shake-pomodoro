@@ -3,20 +3,21 @@ html {
     background-repeat: no-repeat;
     background-attachment: fixed;
     font-family: Helvetica;
+    margin: 0;
+    padding: 0;
+    overflow: scroll;
 }
 
 body, html {
     height: 100%;
     min-height: 100%;
-    margin: 0;
-    padding: 0;
 }
 
 body {
     display: flex;
-    justify-content: safe center;
-    align-items: safe center;
-    overflow: scroll;
+    /*justify-content: safe center;
+    align-items: safe center;*/
+    margin: auto;
 }
 
 main {
@@ -119,7 +120,7 @@ button {
 }
 
 #end-msg {
-    margin-top: 4em;
+    margin-top: 3em;
     visibility: hidden;
     display: none;
 }
