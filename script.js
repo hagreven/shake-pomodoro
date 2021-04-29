@@ -1,14 +1,32 @@
-var tActive = 10; // in s
-var tShortBreak = 60; // in s
-var tLongBreak = 7; //in s
-var counter = 0; // counts nr of sessions
+// #################################################### Objects & Variables #################################################################
+
+// --------------------------------------------------- time interval settings ---------------------------------------------------------------
+var tActive = 10; // time for one session-block in s
+var tShortBreak = 60; // time for short break in s
+var tLongBreak = 30; // time for longer break (once every 4 sessions) in s
+var counter = 0; // counts nr of session-blocks completed
+
+// ----------------------------------------------------------- timer ------------------------------------------------------------------------
 var timer;
 var timerID;
 var focused;
+
+// ------------------------------------------ linear acceleration sensor for movement detection ---------------------------------------------
 var laSensor;
+
+// ----------------------------------------------- gamification elements for motivation -----------------------------------------------------
 var streak = 0;
+
+// ---------------------------------------------------- active break: tipps, scores, messages -----------------------------------------------
 var tips = ['Trink was 💧', 'Snack ein Obst 🍏', 'Beweg dich 💃', 'Öffne das Fenster 🦨', 'Geh kurz mal raus ☀️', 'Atme kurz durch 🌪️']; 
-var xMax, yMax, zMax; 
+var xMax, yMax, zMax;
+
+// ------------------------------------------------------------- sounds ---------------------------------------------------------------------
+var ring1 = new Audio('sounds/bell-1x.mp3');
+var ring2 = new Audio('sounds/bell-2x.mp3');
+
+
+// ############################################################## LOGIC #####################################################################
 
 window.onload = init();
 
@@ -35,19 +53,22 @@ function stopSession(){
 }
 
 function takeBreak(){
+    // hide button during break
+    document.getElementById('btn').style.visibility = "hidden";
     if (laSensor != null){
-        //laSensor.stop();
+        // if available make use of acceleration sensor
         activeBreak();
     } else {
+        // else show tip for active break
         showTip();
-    }        
-    document.getElementById('btn').style.visibility = "hidden";
+    }
+    // set time according to number of session-blocks 
     let time;
     if(counter < 4){
         //short break
         time = tShortBreak;
     } else {
-        // longer break
+        // longer break (every 4 blocks)
         time = tLongBreak;
         // new round
         counter = 0;
@@ -70,41 +91,54 @@ function setTimer(time){
     document.getElementById('timer').innerHTML = minutes + ":" + seconds;
 }
 
-// expects duration in seconds!
 function countdown() {
     timerID = setInterval(function () {
         setTimer(timer);
         if (--timer < 0) {
             clearInterval(timerID);
             if (focused) {
+                ring1.play();
                 counter++;
                 focused = false;
                 updateStreak();
                 takeBreak();
                 document.getElementById('label').innerHTML = "Wohlverdiente Pause";
             } else {
+                ring2.play();
                 if(laSensor != null){
-                    document.getElementById('score').style.display = "none";
-                    document.getElementById('score').style.visibility = "hidden";  
-                    document.getElementById('start-msg').style.display = "none";
-                    document.getElementById('start-msg').style.visibility = "hidden";
-                    document.getElementById('end-msg').style.display = "none";
-                    document.getElementById('end-msg').style.visibility = "hidden";
-                    laSensor.removeEventListener('reading', showScore);
-                    laSensor.addEventListener('reading', dontTouch);
-                    laSensor.stop();
+                    endActiveBreak();
                 }
-                resetMsg();
-                setTimer(tActive);
-                focused = true;
-                let btn = document.getElementById('btn');
-                btn.innerHTML = "START";
-                btn.onclick = startBtn;
-                btn.style.visibility = "visible";
-                document.getElementById('label').innerHTML = "Und weiter geht's!";
+                endBreak();
             }
         }
     }, 1000); // invoked every second
+}
+
+function endActiveBreak(){
+    // remove scores and messages from view
+    document.getElementById('score').style.display = "none";
+    document.getElementById('score').style.visibility = "hidden";  
+    document.getElementById('start-msg').style.display = "none";
+    document.getElementById('start-msg').style.visibility = "hidden";
+    document.getElementById('end-msg').style.display = "none";
+    document.getElementById('end-msg').style.visibility = "hidden";
+    // switch acceleration sensor listener
+    laSensor.removeEventListener('reading', showScore);
+    laSensor.addEventListener('reading', dontTouch);
+    laSensor.stop();                    
+}
+
+function endBreak() {
+    setTimer(tActive);
+    focused = true;
+    // bring back Button
+    let btn = document.getElementById('btn');
+    btn.innerHTML = "START";
+    btn.onclick = startBtn;
+    btn.style.visibility = "visible";
+    // change messages displayed
+    resetMsg();
+    document.getElementById('label').innerHTML = "Und weiter geht's!";
 }
 
 function startBtn(){
@@ -126,8 +160,10 @@ function dontTouch(){
     let x = laSensor.x;
     let y = laSensor.y;
     let z = laSensor.z;
-    if (Math.abs(x**2 + y**2 + z**2)> 0.15) {
+    let tresh = 0.15 // sensibility
+    if ( x > tresh || y > tresh || z > thresh) {
         document.getElementById('message').innerHTML = "Hey, lass dich nicht ablenken!";
+        // stop counting if user picks up phone
         stopBtn();
     }
 }
