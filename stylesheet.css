@@ -112,7 +112,7 @@ button {
     justify-content: stretch;
     text-align: center;
     height: auto;
-    min-height: 80%;
+    min-height: 70%;
 }
 
 #start-msg {
