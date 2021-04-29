@@ -78,7 +78,7 @@ button {
     align-items: flex-end;
     background-color: grey;
     width: 30px;
-    height: 30vh;
+    height: 40vh;
     margin: 1em;
 }
 
@@ -93,6 +93,7 @@ button {
 .labled-container {
     display: flex;
     flex-flow: column nowrap;
+    justify-content: stretch;
     text-align: center;
 }
 
