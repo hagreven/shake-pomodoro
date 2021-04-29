@@ -100,7 +100,7 @@ button {
     flex-flow: column nowrap;
     justify-content: stretch;
     text-align: center;
-    height: 30vh;
+    height: 40%;
 }
 
 #start-msg {
@@ -109,7 +109,6 @@ button {
 }
 
 #end-msg {
-    margin-top: 1em;
     visibility: hidden;
     display: none;
 }
