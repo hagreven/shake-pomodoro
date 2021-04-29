@@ -1,7 +1,7 @@
 /* use viewport-relative units */
 body {
     height: 100vh;
-    background-color: #B1BED5; /* Light Blue */
+    background-image: linear-gradient(180deg, #FDFCFC, #FDFCFC, #C3E0F1); /* Light Blue Gradient */
     border-radius: 1rem;
     font-family: Helvetica;
 }
@@ -21,7 +21,7 @@ h1 {
 
 button {
     font-size: 1em;
-    color: #EEEEEE;
+    color: #FFFFFF;
     background-image:linear-gradient(70deg, #4B79A1, #283E51); /* Dark Sky Gradient */
     border-radius: 1rem;
     margin-top: 1.5em;
