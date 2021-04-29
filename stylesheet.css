@@ -115,8 +115,10 @@ button {
 #end-msg {
     visibility: hidden;
     display: none;
-    vertical-align: middle;
-    line-height: 100%;
+    position: absolute;  
+    left: 50%;                        /* horizontal alignment */
+    top: 50%;                         /* vertical alignment */
+    transform: translate(-50%, -50%); /* precise centering; see link below */
 }
 
 #active-break {
