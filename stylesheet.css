@@ -12,12 +12,19 @@ body, html {
     padding: 0;
 }
 
+body {
+    display: flex;
+    justify-content: safe center;
+    align-items: safe center;
+}
+
 main {
     display: flex;
     flex-flow: column nowrap;
     justify-content: safe center;
     align-items: safe center;
     height: auto;
+    min-height: 50%;
     width: 100%;
     overflow: scroll;
 }
@@ -86,7 +93,7 @@ button {
     flex-flow: column-reverse nowrap;
     align-items: flex-end;
     background-color: grey;
-    height: 4em;
+    min-height: 100%;
     width: 30px;
     margin: 1em;
 }
@@ -105,6 +112,7 @@ button {
     justify-content: stretch;
     text-align: center;
     height: auto;
+    min-height: 50%;
 }
 
 #start-msg {
@@ -115,9 +123,6 @@ button {
 #end-msg {
     visibility: hidden;
     display: none;
-    position: absolute;  
-    left: 50%;
-    top: 50%;
 }
 
 #active-break {
