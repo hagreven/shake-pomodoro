@@ -77,7 +77,7 @@ button {
     flex-flow: column-reverse nowrap;
     align-items: flex-end;
     background-color: grey;
-    height: 40vh;
+    height: 25vh;
     width: 30px;
     margin: 1em;
 }
