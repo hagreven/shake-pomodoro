@@ -1,13 +1,16 @@
 /* use viewport-relative units */
 html {
     background-image: linear-gradient(180deg, #FDFCFC, #FDFCFC, #C3E0F1); /* Light Blue Gradient */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     font-family: Helvetica;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
 }
 
 body, html {    
     height: 100%;
-    padding: 0;
-    margin: 0;
 }
 
 main {
@@ -100,7 +103,7 @@ button {
     flex-flow: column nowrap;
     justify-content: stretch;
     text-align: center;
-    height: 30vh;
+    min-height: 30vh;
 }
 
 #start-msg {
@@ -109,6 +112,7 @@ button {
 }
 
 #end-msg {
+    margin-top: 3em;
     visibility: hidden;
     display: none;
 }
