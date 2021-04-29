@@ -54,7 +54,9 @@ function stopSession(){
 
 function takeBreak(){
     // hide button during break
-    document.getElementById('btn').style.visibility = "hidden";
+    let btn = document.getElementById('btn');
+    btn.style.visibility = "hidden";
+    btn.style.display = "none";
     if (laSensor != null){
         // if available make use of acceleration sensor
         activeBreak();
@@ -136,6 +138,7 @@ function endBreak() {
     btn.innerHTML = "START";
     btn.onclick = startBtn;
     btn.style.visibility = "visible";
+    btn.style.display = "block";
     // change messages displayed
     resetMsg();
     document.getElementById('label').innerHTML = "Und weiter geht's!";
