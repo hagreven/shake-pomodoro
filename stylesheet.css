@@ -4,7 +4,7 @@ html {
     background-attachment: fixed;
     font-family: Helvetica;
     margin: 0;
-    padding: 0;
+    padding: 20px;
     overflow: scroll;
 }
 
@@ -120,7 +120,7 @@ button {
 }
 
 #end-msg {
-    margin-top: 3em;
+    margin-top: 2.5em;
     visibility: hidden;
     display: none;
 }
