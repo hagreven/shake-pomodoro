@@ -5,8 +5,9 @@ html {
     font-family: Helvetica;
 }
 
-body, html {    
+body, html {
     height: 100%;
+    min-height: 100%;
     margin: 0;
     padding: 0;
 }
@@ -15,6 +16,7 @@ body {
     display: flex;
     justify-content: safe center;
     align-items: safe center;
+    overflow: scroll;
 }
 
 main {
@@ -41,7 +43,6 @@ button {
     padding-right: 1rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-    margin-bottom: 10%;
 }
 
 #timer {
@@ -118,13 +119,9 @@ button {
 }
 
 #end-msg {
+    margin-top: 2em;
     visibility: hidden;
     display: none;
-}
-
-#active-break {
-    text-align: center;
-    min-height: 50%;
 }
 
 @font-face{
