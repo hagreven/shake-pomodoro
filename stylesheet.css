@@ -76,7 +76,7 @@ button {
     align-items: flex-end;
     background-color: grey;
     width: 30px;
-    height: 20vh;
+    height: 30vh;
     margin: 1em;
 }
 
@@ -91,7 +91,7 @@ button {
 .labled-container {
     display: flex;
     flex-flow: column nowrap;
-    text-align: bottom;
+    text-align: center;
 }
 
 #start-msg {
