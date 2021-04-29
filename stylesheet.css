@@ -3,7 +3,6 @@ html {
     background-repeat: no-repeat;
     background-attachment: fixed;
     font-family: Helvetica;
-    overflow: scroll;
 }
 
 body, html {    
@@ -26,7 +25,6 @@ main {
     height: auto;
     min-height: 50%;
     width: 100%;
-    overflow: scroll;
 }
 
 h1 {
@@ -112,7 +110,6 @@ button {
     justify-content: stretch;
     text-align: center;
     height: auto;
-    min-height: 70%;
 }
 
 #start-msg {
