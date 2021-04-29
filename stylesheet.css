@@ -1,22 +1,22 @@
-/* use viewport-relative units */
 html {
     background-image: linear-gradient(180deg, #FDFCFC, #FDFCFC, #C3E0F1); /* Light Blue Gradient */
     background-repeat: no-repeat;
     background-attachment: fixed;
     font-family: Helvetica;
+    overflow: scroll;
 }
 
 body, html {    
     height: 100%;
+    margin: 0;
     padding: 0;
-    margin: 0;    
 }
 
 main {
     display: flex;
     flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
+    justify-content: safe center;
+    align-items: safe center;
     height: 100%;
     width: 100%;
 }
@@ -35,6 +35,7 @@ button {
     padding-right: 1rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
+    margin-bottom: 10%;
 }
 
 #timer {
@@ -102,7 +103,7 @@ button {
     flex-flow: column nowrap;
     justify-content: stretch;
     text-align: center;
-    min-height: 4em;
+    min-height: 25vh;
 }
 
 #start-msg {
