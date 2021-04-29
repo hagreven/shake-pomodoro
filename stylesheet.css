@@ -48,6 +48,8 @@ button {
 }
 
 #message {
+    display: none;
+    visibility: hidden;
     margin-top: 2em;
 }
 

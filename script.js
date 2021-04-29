@@ -162,7 +162,7 @@ function dontTouch(){
     let z = laSensor.z;
     let tresh = 0.5 // sensibility
     if ( x > tresh || y > tresh || z > thresh) {
-        document.getElementById('message').innerHTML = "Hey, lass dich nicht ablenken!";
+        setMessage("Hey, lass dich nicht ablenken!");
         // stop counting if user picks up phone
         stopBtn();
     }
@@ -187,8 +187,18 @@ function startLinearAccelerometer(){
     }
 }
 
+function setMessage(txt) {
+    let msg = document.getElementById('message')
+    msg.innerHTML = txt;
+    msg.style.visibility = "visible";
+    msg.style.display = "block";
+}
+
 function resetMsg(){
-    document.getElementById('message').innerHTML = "";
+    let msg = document.getElementById('message')
+    msg.innerHTML = "";
+    msg.style.visibility = "hidden";
+    msg.style.display = "none";
 }
 
 function updateStreak(){
@@ -199,7 +209,7 @@ function updateStreak(){
 function showTip(){
     let i = getRandomInt(tips.length - 1);
     let tip = tips[i];
-    document.getElementById('message').innerHTML = "<b>Tipp: </b>" + tip;
+    setMessage("<b>Tipp: </b>" + tip);
 }
 
 function getRandomInt(max) {
