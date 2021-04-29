@@ -100,7 +100,7 @@ button {
     flex-flow: column nowrap;
     justify-content: stretch;
     text-align: center;
-    height: 40%;
+    height: 30vh;
 }
 
 #start-msg {
