@@ -84,7 +84,7 @@ button {
     flex-flow: column-reverse nowrap;
     align-items: flex-end;
     background-color: grey;
-    height: 20vh;
+    height: 100%;
     width: 30px;
     margin: 1em;
 }
@@ -102,7 +102,7 @@ button {
     flex-flow: column nowrap;
     justify-content: stretch;
     text-align: center;
-    min-height: 30vh;
+    min-height: 3em;
 }
 
 #start-msg {
@@ -113,6 +113,10 @@ button {
 #end-msg {
     visibility: hidden;
     display: none;
+}
+
+#active-break {
+    text-align: center;
 }
 
 @font-face{
