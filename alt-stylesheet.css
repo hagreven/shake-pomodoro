@@ -79,7 +79,7 @@ button {
     display: none; /*Changed to flex for active break on smartphone*/
     flex-flow: row nowrap;
     justify-content: safe center;
-    height: 15vh;
+    height: 20vh;
     margin: 1em;
 }
 
@@ -112,6 +112,7 @@ button {
 }
 
 #start-msg {
+    margin-top: 1em;
     visibility: hidden;
     display: none;
 }
