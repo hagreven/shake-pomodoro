@@ -3,31 +3,22 @@ html {
     background-repeat: no-repeat;
     background-attachment: fixed;
     font-family: Helvetica;
-    margin: 0;
-    padding: 20px;
-    overflow: scroll;
-}
-
-body, html {
-    height: 100%;
+    text-align: center;
     min-height: 100%;
+    display: flex;
+    flex-flow: column;
 }
 
 body {
-    display: flex;
-    /*justify-content: safe center;
-    align-items: safe center;*/
-    margin: auto;
+    margin: auto; /* centers content vertically on page */
+    padding: 5%;
 }
 
 main {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: safe center;
-    align-items: safe center;
     height: auto;
     min-height: 50%;
     width: 100%;
+    margin: auto;
 }
 
 h1 {
@@ -44,6 +35,8 @@ button {
     padding-right: 1rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #timer {
@@ -54,29 +47,31 @@ button {
     background-image:linear-gradient(175deg,#4B79A1,#283E51); /* Dark Sky Gradient */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    padding: 0;
     margin: 0;
+    width: 100%;
+    text-align: center;
 }
 
 #label {
+    text-align: center;
     font-weight: bold;
     padding: 0;
+    width: 100%;
 }
 
 #message {
     display: none;
     visibility: hidden;
-    margin-top: 2em;
+    margin-top: 3em;
 }
 
 #stats {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    align-items: center;
+    text-align: center;
     width: 100%;
     font-size: 1em;
     color: gray;
+    padding: 0;
+    margin: 0;
 }
 
 #score {
@@ -84,26 +79,8 @@ button {
     display: none; /*Changed to flex for active break on smartphone*/
     flex-flow: row nowrap;
     justify-content: safe center;
-    margin-bottom: 2.5em;
-    height: 5em;
-}
-
-.progress {
-    display: flex;
-    flex-flow: column-reverse nowrap;
-    align-items: flex-end;
-    background-color: grey;
-    min-height: 100%;
-    width: 30px;
+    height: 20vh;
     margin: 1em;
-}
-
-.bar{
-    width: 30px;
-    height: 2%;
-    background-color: #DD571C;
-    text-align: center;
-    color: white;
 }
 
 .labled-container {
@@ -114,13 +91,34 @@ button {
     height: auto;
 }
 
+.progress {
+    display: flex;
+    flex-flow: column-reverse nowrap;
+    align-items: flex-end;
+    background-color: grey;
+    min-height: 80%;
+    width: 30px;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 0.5em;
+}
+
+.bar{
+    width: 30px;
+    height: 2%;
+    background-color: #DD571C;
+    text-align: center;
+    color: white;
+}
+
 #start-msg {
+    margin-top: 2em;
     visibility: hidden;
     display: none;
 }
 
 #end-msg {
-    margin-top: 2.5em;
+    margin-top: 2em;
     visibility: hidden;
     display: none;
 }
