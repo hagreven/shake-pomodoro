@@ -79,7 +79,7 @@ button {
     display: none; /*Changed to flex for active break on smartphone*/
     flex-flow: row nowrap;
     justify-content: safe center;
-    height: 30vh;
+    height: 15vh;
     margin: 1em;
 }
 
