@@ -42,7 +42,7 @@ function startSession(){
     if (laSensor != null) {
         laSensor.start();
     }
-    countdown();
+    demoCountdown();
 }
 
 function stopSession(){
@@ -76,7 +76,7 @@ function takeBreak(){
         counter = 0;
     }
     setTimer(time);
-    countdown();
+    demoCountdown();
 }
 
 function setTimer(time){
@@ -96,6 +96,33 @@ function setTimer(time){
 function countdown() {
     timerID = setInterval(function () {
         setTimer(timer);
+        if (--timer < 0) {
+            clearInterval(timerID);
+            if (focused) {
+                ring1.play();
+                counter++;
+                focused = false;
+                updateStreak();
+                takeBreak();
+                document.getElementById('label').innerHTML = "Wohlverdiente Pause";
+            } else {
+                ring2.play();
+                if(laSensor != null){
+                    endActiveBreak();
+                }
+                endBreak();
+            }
+        }
+    }, 1000); // invoked every second
+}
+
+function demoCountdown() {
+    tBreak = timer - 15;
+    timerID = setInterval(function () {
+        setTimer(timer);
+        if (timer == tBreak){
+            timer = 10;
+        }
         if (--timer < 0) {
             clearInterval(timerID);
             if (focused) {
